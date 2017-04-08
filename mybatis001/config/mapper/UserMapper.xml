@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinawhiter.mybatis.mapper.UserMapper">
+<select id="findUserById" parameterType="java.lang.String" resultType="com.chinawhiter.mybatis.po.User">
+	select * from t_user where id = #{id}
+</select>
+<select id="findUserByName" parameterType="java.lang.String" resultType="com.chinawhiter.mybatis.po.User">
+	select * from t_user where username like '%${value}%'
+</select>
+<insert id="inserUser" parameterType="com.chinawhiter.mybatis.po.User" useGeneratedKeys="true">
+	<!--自增主键  -->
+	<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+		<!-- select last_insert_id() -->select uuid()
+	</selectKey>
+	insert into t_user (id,username,password,createTime,expireTime) values(#{id},#{username},#{password},#{createTime},#{expireTime})
+</insert>
+</mapper>
