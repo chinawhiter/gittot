@@ -5,6 +5,9 @@ public class Singleton {
 	private Singleton(){
 		
 	}
+	/**
+	 * 你是我的情人呐
+	 * */
 	public static Singleton newInstance(){
 		return st;
 	}
